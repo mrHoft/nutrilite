@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:content": "node scripts/check-content.mjs",
+    "check:ssr": "node scripts/ssr-check.mjs",
+    "check": "npm run check:content && npm run check:ssr"
   },
   "dependencies": {
     "vue": "^3.5.44"
