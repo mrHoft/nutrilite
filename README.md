@@ -2,7 +2,7 @@
 
 Nutrilite is a self-contained web app for the Russian-language online course
 **«Основы здорового питания»** ("Fundamentals of Healthy Nutrition"). It turns the
-course Markdown files in `docs/lessons/` into a readable, progress-aware learning
+course Markdown files in `public/lessons/` into a readable, progress-aware learning
 experience.
 
 The project is intentionally dependency-light: course content, navigation, Markdown
@@ -12,7 +12,8 @@ authentication, or database.
 ## Features
 
 - **Course home page** with the full module list, course stats, and a continue card.
-- **Lesson reader** that renders lessons directly from Markdown.
+- **Lesson reader** that renders lessons directly from Markdown, with a hero
+  illustration for each module.
 - **Auto-generated table of contents** from lesson headings.
 - **Previous/next lesson navigation** with automatic completion on "next".
 - **Reading progress** based on the visible part of the lesson and current scroll
@@ -23,6 +24,9 @@ authentication, or database.
   reset action.
 - **Responsive layout** with a collapsible module sidebar on smaller screens.
 - **Light/dark color support** based on the user's system preference.
+- **Web app manifest** for adding the course to the home screen.
+- **Offline support** through a generated service worker that precaches the app
+  shell, lessons, and images.
 
 ## How progress works
 
@@ -60,16 +64,23 @@ Progress is local to the browser and is not synchronized between devices.
   tables, blockquotes, code blocks, dividers, and inline formatting
 - **Custom hash router** with `#/`, `#/lesson/:id`, and `#/progress` routes
 - **`localStorage`** for persistence
+- **Generated service worker** with cache-first static assets and an offline app
+  shell fallback
 - **No runtime UI, Markdown, router, or state-management dependencies**
 
 ## Project layout
 
 ```text
 docs/
-  lessons/          Course content (Markdown, one file per module)
+  branding.md       Course branding notes
   syllabus.md       Course syllabus and module plan
-public/             Static assets (logo, favicon)
+public/
+  images/           Lesson hero illustrations
+  lessons/          Course content (Markdown, one file per module)
+  logo/             Course logo assets (logo_{size}.png)
+  manifest.json     Web app manifest
 scripts/
+  build-sw.mjs      Generates the service worker and its precache list
   check-content.mjs Validates lesson structure and Markdown parsing
   ssr-check.mjs     Renders lessons and views, checks progress persistence
 src/
@@ -77,7 +88,7 @@ src/
   composables/      Progress state and reading-position logic
   content/          Lesson catalog, repository, and Markdown parser
   router/           Hash-based routing
-  services/         localStorage persistence
+  services/         localStorage persistence and service worker registration
   styles/           Design tokens, base styles, and Markdown styles
   types/            Shared TypeScript types
   views/            Home, lesson, progress, and not-found views
@@ -103,6 +114,9 @@ npm run check        # Validate content and render all views
 npm run check:content
 npm run check:ssr
 ```
+
+The service worker is registered only in production builds. To test offline behavior,
+run `npm run build` and then `npm run preview`.
 
 ## Course content
 

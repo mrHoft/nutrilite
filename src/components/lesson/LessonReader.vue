@@ -86,6 +86,16 @@ function scrollToHeading(id: string) {
 <template>
   <div class="lesson-layout">
     <article ref="articleRef" class="lesson-article">
+      <img
+        class="lesson-hero"
+        :src="lesson.heroImage"
+        alt=""
+        width="1024"
+        height="466"
+        decoding="async"
+        fetchpriority="high"
+      />
+
       <header class="lesson-header">
         <p class="lesson-eyebrow">Модуль {{ lesson.order }}</p>
         <h1>{{ lesson.title }}</h1>
@@ -138,6 +148,18 @@ function scrollToHeading(id: string) {
 
 .lesson-article {
   min-width: 0;
+}
+
+.lesson-hero {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2.2 / 1;
+  object-fit: cover;
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-muted);
 }
 
 .lesson-header {

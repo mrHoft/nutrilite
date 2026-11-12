@@ -1,4 +1,4 @@
-import { readFile, readdir } from 'node:fs/promises'
+import { access, readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 
 import { createServer } from 'vite'
@@ -20,7 +20,7 @@ try {
   )
   const { lessonMetas } = await server.ssrLoadModule('/src/content/catalog.ts')
 
-  const dir = path.resolve('docs/lessons')
+  const dir = path.resolve('public/lessons')
   const files = (await readdir(dir)).filter((file) => file.endsWith('.md')).sort()
 
   if (lessonMetas.length !== files.length) {
@@ -40,6 +40,12 @@ try {
     const id = file.replace(/\.md$/, '')
     const blocks = parseBlocks(raw)
     const meta = extractMeta(id, raw)
+
+    try {
+      await access(path.join('public', meta.heroImage.replace(/^\//, '')))
+    } catch {
+      failures.push(`${file}: missing hero image ${meta.heroImage}`)
+    }
 
     const headings = blocks.filter((block) => block.type === 'heading')
     const tables = blocks.filter((block) => block.type === 'table')

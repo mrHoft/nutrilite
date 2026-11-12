@@ -1,7 +1,7 @@
 import type { LessonMeta } from '@/types/lesson'
 import { extractMeta } from './markdown/extractMeta'
 
-const modules = import.meta.glob('../../docs/lessons/*.md', {
+const modules = import.meta.glob('../../public/lessons/*.md', {
   query: '?raw',
   import: 'default',
   eager: true,

@@ -22,7 +22,7 @@ const { overallPercent, completedCount, totalCount } = useProgress()
       </button>
 
       <a class="brand" href="#/" aria-label="Nutrilite — на главную">
-        <img src="/logo_128.png" alt="" width="36" height="36" />
+        <img src="/logo/logo_128.png" alt="" width="36" height="36" />
         <span class="brand-text">
           <strong>Nutrilite</strong>
           <small>Основы здорового питания</small>

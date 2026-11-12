@@ -7,6 +7,7 @@ export interface LessonMeta {
   shortTitle: string
   duration?: string
   format?: string
+  heroImage: string
   wordCount: number
   readingMinutes: number
 }

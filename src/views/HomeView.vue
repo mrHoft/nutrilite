@@ -42,7 +42,7 @@ const { statusOf, completedCount, overallPercent } = useProgress()
       </div>
 
       <div class="hero-mark" aria-hidden="true">
-        <img src="/logo_128.png" alt="" />
+        <img src="/logo/logo_128.png" alt="" />
       </div>
     </section>
 

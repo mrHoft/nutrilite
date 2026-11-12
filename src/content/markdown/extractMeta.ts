@@ -32,6 +32,7 @@ export function extractMeta(id: string, raw: string): LessonMeta {
     shortTitle,
     duration: extractField(lines, 'Длительность'),
     format: extractField(lines, 'Формат'),
+    heroImage: `/images/${id}.jpg`,
     wordCount,
     readingMinutes: Math.max(1, Math.round(wordCount / 180)),
   }

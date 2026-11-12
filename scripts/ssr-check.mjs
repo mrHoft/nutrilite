@@ -78,6 +78,12 @@ try {
 
     if (!html.includes('lesson-article')) failures.push(`${meta.id}: no article`)
     if (!html.includes('lesson-toc')) failures.push(`${meta.id}: no toc`)
+    if (!html.includes('lesson-hero')) {
+      failures.push(`${meta.id}: hero image not rendered`)
+    }
+    if (!html.includes(meta.heroImage)) {
+      failures.push(`${meta.id}: hero image URL missing`)
+    }
     if (renderedTables !== tableCount) {
       failures.push(
         `${meta.id}: rendered ${renderedTables} tables, expected ${tableCount}`,
