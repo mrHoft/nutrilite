@@ -3,7 +3,7 @@
   "short_name": "Nutrilite",
   "description": "Интерактивный курс «Основы здорового питания»: читайте модули и отслеживайте прогресс.",
   "lang": "ru",
-  "start_url": "/#/",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f6faf4",

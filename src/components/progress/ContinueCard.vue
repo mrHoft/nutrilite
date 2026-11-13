@@ -3,6 +3,7 @@ import { computed } from 'vue'
 
 import { getLessonMeta, getLessons } from '@/content/lessonRepository'
 import { useProgress } from '@/composables/useProgress'
+import { lessonHref } from '@/router/routes'
 
 const lessons = getLessons()
 const firstLesson = lessons[0]
@@ -59,11 +60,11 @@ const kicker = computed(() => {
     </div>
 
     <div class="continue-actions">
-      <a class="primary-button" :href="`#/lesson/${target.id}`">{{ label }}</a>
+      <a class="primary-button" :href="lessonHref(target.id)">{{ label }}</a>
       <a
         v-if="firstLesson && target.id !== firstLesson.id"
         class="ghost-button"
-        :href="`#/lesson/${firstLesson.id}`"
+        :href="lessonHref(firstLesson.id)"
       >
         С начала курса
       </a>

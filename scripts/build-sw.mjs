@@ -82,9 +82,8 @@ async function cacheAsset(request) {
   }
 }
 
-function isAppNavigation(request) {
-  const url = new URL(request.url)
-  return url.pathname === '/' || url.pathname === '/index.html'
+function isNavigation(request) {
+  return request.mode === 'navigate'
 }
 
 self.addEventListener('install', (event) => {
@@ -119,9 +118,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return
 
   event.respondWith(
-    request.mode === 'navigate' && isAppNavigation(request)
-      ? cacheNavigation(request)
-      : cacheAsset(request),
+    isNavigation(request) ? cacheNavigation(request) : cacheAsset(request),
   )
 })
 `

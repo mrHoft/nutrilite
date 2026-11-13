@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { useRoute } from '@/router/useRoute'
+import { useRoute } from '@/router/router'
 import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 

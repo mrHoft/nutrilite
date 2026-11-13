@@ -5,7 +5,12 @@ import { renderToString } from 'vue/server-renderer'
 const storage = new Map()
 
 globalThis.window = {
-  location: { hash: '#/' },
+  location: { pathname: '/', hash: '' },
+  history: {
+    pushState: () => {},
+    back: () => {},
+    forward: () => {},
+  },
   localStorage: {
     getItem: (key) => storage.get(key) ?? null,
     setItem: (key, value) => storage.set(key, String(value)),

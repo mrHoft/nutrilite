@@ -21,7 +21,7 @@ const { overallPercent, completedCount, totalCount } = useProgress()
         <span />
       </button>
 
-      <a class="brand" href="#/" aria-label="Nutrilite — на главную">
+      <a class="brand" href="/" aria-label="Nutrilite — на главную">
         <img src="/logo/logo_128.png" alt="" width="36" height="36" />
         <span class="brand-text">
           <strong>Nutrilite</strong>
@@ -30,8 +30,8 @@ const { overallPercent, completedCount, totalCount } = useProgress()
       </a>
 
       <nav class="header-nav" aria-label="Основная навигация">
-        <a href="#/">Курс</a>
-        <a href="#/progress">Прогресс</a>
+        <a href="/">Курс</a>
+        <a href="/progress">Прогресс</a>
       </nav>
 
       <div class="header-progress">

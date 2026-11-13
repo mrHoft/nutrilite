@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { getLessons } from '@/content/lessonRepository'
 import { useProgress } from '@/composables/useProgress'
-import { useRoute } from '@/router/useRoute'
+import { useRoute } from '@/router/router'
+import { lessonHref } from '@/router/routes'
 import type { LessonStatus } from '@/types/progress'
 
 defineProps<{ open: boolean }>()
@@ -34,7 +35,7 @@ const statusLabels: Record<LessonStatus, string> = {
           'is-active': route.name === 'lesson' && route.id === lesson.id,
           'is-completed': statusOf(lesson.id) === 'completed',
         }"
-        :href="`#/lesson/${lesson.id}`"
+        :href="lessonHref(lesson.id)"
         :title="lesson.title"
         :aria-label="`${lesson.shortTitle}. ${statusLabels[statusOf(lesson.id)]}`"
         :aria-current="
@@ -53,7 +54,7 @@ const statusLabels: Record<LessonStatus, string> = {
     </nav>
 
     <div class="sidebar-footer">
-      <a href="#/progress" class="sidebar-progress-link" @click="$emit('close')">
+      <a href="/progress" class="sidebar-progress-link" @click="$emit('close')">
         Общий прогресс
       </a>
     </div>

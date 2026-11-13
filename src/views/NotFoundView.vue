@@ -5,7 +5,7 @@
     <p class="nf-lead">
       Возможно, модуль ещё не добавлен или ссылка устарела.
     </p>
-    <a class="primary-button" href="#/">Вернуться к курсу</a>
+    <a class="primary-button" href="/">Вернуться к курсу</a>
   </div>
 </template>
 

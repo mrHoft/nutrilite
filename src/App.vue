@@ -2,7 +2,7 @@
 import { watch } from 'vue'
 
 import AppShell from '@/components/layout/AppShell.vue'
-import { useRoute } from '@/router/useRoute'
+import { useRoute } from '@/router/router'
 import HomeView from '@/views/HomeView.vue'
 import LessonView from '@/views/LessonView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'

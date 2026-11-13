@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProgress } from '@/composables/useProgress'
+import { lessonHref } from '@/router/routes'
 import type { LessonMeta } from '@/types/lesson'
 
 const props = defineProps<{
@@ -22,7 +23,7 @@ function completeCurrent() {
     <a
       v-if="previous"
       class="nav-card"
-      :href="`#/lesson/${previous.id}`"
+      :href="lessonHref(previous.id)"
     >
       <span class="nav-label">← Назад</span>
       <span class="nav-title">{{ previous.shortTitle }}</span>
@@ -32,7 +33,7 @@ function completeCurrent() {
     <a
       v-if="next"
       class="nav-card nav-card-next"
-      :href="`#/lesson/${next.id}`"
+      :href="lessonHref(next.id)"
       @click="completeCurrent"
     >
       <span class="nav-label">Далее →</span>
@@ -41,7 +42,7 @@ function completeCurrent() {
     <a
       v-else
       class="nav-card nav-card-next"
-      href="#/progress"
+      href="/progress"
       @click="completeCurrent"
     >
       <span class="nav-label">Далее →</span>

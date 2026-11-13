@@ -4,6 +4,7 @@ import LessonStatusBadge from '@/components/progress/LessonStatusBadge.vue'
 import ProgressBar from '@/components/progress/ProgressBar.vue'
 import { useProgress } from '@/composables/useProgress'
 import { getLessons } from '@/content/lessonRepository'
+import { lessonHref } from '@/router/routes'
 
 const lessons = getLessons()
 const { statusOf, completedCount, overallPercent } = useProgress()
@@ -51,7 +52,7 @@ const { statusOf, completedCount, overallPercent } = useProgress()
     <section class="lesson-section">
       <div class="section-head">
         <h2>Программа курса</h2>
-        <a href="#/progress">Мой прогресс</a>
+        <a href="/progress">Мой прогресс</a>
       </div>
 
       <div class="lesson-grid">
@@ -59,7 +60,7 @@ const { statusOf, completedCount, overallPercent } = useProgress()
           v-for="lesson in lessons"
           :key="lesson.id"
           class="lesson-card"
-          :href="`#/lesson/${lesson.id}`"
+          :href="lessonHref(lesson.id)"
         >
           <div class="lesson-card-top">
             <span class="lesson-card-number">

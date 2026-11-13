@@ -3,6 +3,7 @@ import LessonStatusBadge from '@/components/progress/LessonStatusBadge.vue'
 import ProgressBar from '@/components/progress/ProgressBar.vue'
 import { useProgress } from '@/composables/useProgress'
 import { getLessons } from '@/content/lessonRepository'
+import { lessonHref } from '@/router/routes'
 
 const lessons = getLessons()
 const {
@@ -83,7 +84,7 @@ function onReset() {
           <tbody>
             <tr v-for="lesson in lessons" :key="lesson.id">
               <td>
-                <a class="progress-title" :href="`#/lesson/${lesson.id}`">
+                <a class="progress-title" :href="lessonHref(lesson.id)">
                   <span class="progress-number">
                     {{ String(lesson.order).padStart(2, '0') }}
                   </span>
