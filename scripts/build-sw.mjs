@@ -52,18 +52,31 @@ function offlineResponse() {
   })
 }
 
-async function cacheNavigation(request) {
+async function fetchShell(request) {
   try {
     const response = await fetch(request)
     if (response.ok && response.headers.get('Content-Type')?.includes('text/html')) {
       const cache = await caches.open(CACHE_NAME)
       await cache.put(OFFLINE_URL, response.clone())
+      return response
     }
-    return response
   } catch {
-    const cached = await caches.match(OFFLINE_URL)
-    return cached || offlineResponse()
+    // Fall through to the cached shell below.
   }
+  return null
+}
+
+async function cacheNavigation(request, event) {
+  const cached = await caches.match(OFFLINE_URL)
+
+  if (cached) {
+    // Cache-first: serve the shell immediately and refresh it in the background.
+    event.waitUntil(fetchShell(request))
+    return cached
+  }
+
+  const response = await fetchShell(request)
+  return response || (await caches.match(OFFLINE_URL)) || offlineResponse()
 }
 
 async function cacheAsset(request) {
@@ -118,7 +131,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return
 
   event.respondWith(
-    isNavigation(request) ? cacheNavigation(request) : cacheAsset(request),
+    isNavigation(request) ? cacheNavigation(request, event) : cacheAsset(request),
   )
 })
 `
