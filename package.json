@@ -1,12 +1,12 @@
 {
   "name": "nutrilite",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vue-tsc -b && vite build && node scripts/build-sw.mjs",
-    "preview": "vite preview",
+    "serve": "vite preview --port 3000",
     "check:content": "node scripts/check-content.mjs",
     "check:ssr": "node scripts/ssr-check.mjs",
     "check": "npm run check:content && npm run check:ssr"

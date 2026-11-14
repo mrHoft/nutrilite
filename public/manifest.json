@@ -1,10 +1,11 @@
 {
-  "name": "Nutrilite — Основы здорового питания",
+  "name": "Nutrilite - Основы здорового питания",
   "short_name": "Nutrilite",
   "description": "Интерактивный курс «Основы здорового питания»: читайте модули и отслеживайте прогресс.",
   "lang": "ru",
   "start_url": "/",
   "scope": "/",
+  "id": "/",
   "display": "standalone",
   "background_color": "#f6faf4",
   "theme_color": "#3fa34d",
@@ -14,6 +15,18 @@
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/logo/logo_128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo/logo_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/logo/logo_192.png",
@@ -26,6 +39,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "/logo/logo_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
